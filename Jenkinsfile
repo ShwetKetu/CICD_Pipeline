@@ -9,7 +9,7 @@ pipeline {
                 sh "docker rmi tomcat:9.0 || true"
                 sh "docker rmi mywebapp || true"
                 sh "rm -rf /opt/jenkins/CICD_Pipeline/ROOT.war || true"
-                sh "rm -rf /var/lib/jenkins/workspace/CICD_Job/target/sample.war || true"
+                sh "rm -rf /var/lib/jenkins/workspace/Pipeline_Job/target/sample.war || true"
             }
         }
         stage('Build and Test') {
@@ -18,7 +18,7 @@ pipeline {
                 git 'https://github.com/ShwetKetu/CICD_Pipeline.git'
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
-                sh 'cp /var/lib/jenkins/workspace/CICD_Job/target/sample.war /opt/jenkins/CICD_Pipeline/ROOT.war'
+                sh 'cp /var/lib/jenkins/workspace/Pipeline_Job/target/sample.war /opt/jenkins/CICD_Pipeline/ROOT.war'
 
             }
 
