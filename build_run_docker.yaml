@@ -1,0 +1,10 @@
+---
+- name: Build the image and run the container
+  hosts: localhost
+
+  tasks:
+    - name: build the image
+      command: docker build . -t mywebapp -f /opt/jenkins/CICD_Pipeline/Dockerfile
+
+    - name: run rhe container
+      command: docker run -itd --rm --name tomcat9 -p 80:8080 mywebapp
